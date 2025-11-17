@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CostumControls - Custom Ergonomic Gaming Controllers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border: 2px dashed #ddd;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .process {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4rem 2rem;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .pricing {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .price-card {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price-features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .price-features li {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .price-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .price {
+                font-size: 3rem;
+            }
+        }
+
+        .comparison {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .comparison-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-row:first-child {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-cell {
+            padding: 1.5rem;
+            text-align: center;
+            border-right: 1px solid #eee;
+        }
+
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+
+        .checkmark {
+            color: #4caf50;
+            font-size: 1.5rem;
+        }
+
+        .crossmark {
+            color: #f44336;
+            font-size: 1.5rem;
+        }
+
+        .our-product-column {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .testimonials-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4rem 2rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin: 1rem 0;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .faq-section {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            opacity: 0.9;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            display: none;
+            background: #f9f9f9;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .materials-section {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .material-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .material-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .material-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .material-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .locations-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4rem 2rem;
+        }
+
+        .locations-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .location-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .location-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .location-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .location-card h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .location-specialty {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 180px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .event-header h4 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .event-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .event-location {
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .event-details {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .event-note {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border-left: 3px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CostumControls</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Your Hands. Your Controller.</h1>
+        <p>Custom-molded ergonomic gaming controllers designed specifically for YOU</p>
+        
+        <div class="hero-image-container">
+            <div class="hero-image">
+                <img src="images/hero.png" 
+                     alt="Custom Gaming Controller" 
+                     style="max-width:100%; max-height:100%; object-fit:contain; border-radius:10px;">
+            </div>
+        </div>
+        
+        <a href="#contact" class="cta-button">Get Started</a>
+    </section>
+
+    <div class="container">
+        <section id="features" class="section">
+            <h2 class="section-title">Why Choose CostumControls?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="images/perfect_fit.png" 
+                            alt="Perfect Fit for Your Hands" 
+                            style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                    </div>
+                    <div class="feature-icon">✋</div>
+                    <h3>Perfect Fit</h3>
+                    <p>Each controller is molded to match the exact contours of your hands, providing unprecedented comfort during marathon gaming sessions.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="images/competitive_edge.png" 
+                            alt="Enhanced Performance" 
+                            style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                    </div>
+                    <div class="feature-icon">🎮</div>
+                    <h3>Enhanced Performance</h3>
+                    <p>Better ergonomics mean less fatigue and more precise control, giving you the competitive edge you need to dominate.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="images/reduced_strain.png" 
+                            alt="Reduced Strain" 
+                            style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                    </div>
+                    <div class="feature-icon">💪</div>
+                    <h3>Reduced Strain</h3>
+                    <p>Custom ergonomics help prevent hand fatigue, wrist strain, and repetitive stress injuries associated with prolonged gaming.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="process">
+        <h2 class="section-title">How It Works</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Visit Us</h3>
+                <p>Come to one of our partner locations or catch us at a gaming convention in the Montreal area.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Get Molded</h3>
+                <p>We create a precise mold of your hands to capture every unique contour and measurement.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>We Craft</h3>
+                <p>Our team uses advanced 3D printing technology to create your personalized controller shells.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Game On!</h3>
+                <p>Within two weeks, you'll receive your custom controller and experience gaming like never before.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="comparison">
+        <div class="container">
+            <h2 class="section-title">Why Custom Beats Generic</h2>
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div class="comparison-cell">Feature</div>
+                    <div class="comparison-cell">Generic Controllers</div>
+                    <div class="comparison-cell our-product-column">CostumControls</div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell"><strong>Fits Your Hands</strong></div>
+                    <div class="comparison-cell"><span class="crossmark">✗</span></div>
+                    <div class="comparison-cell our-product-column"><span class="checkmark">✓</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell"><strong>Reduces Fatigue</strong></div>
+                    <div class="comparison-cell"><span class="crossmark">✗</span></div>
+                    <div class="comparison-cell our-product-column"><span class="checkmark">✓</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell"><strong>Improves Grip</strong></div>
+                    <div class="comparison-cell">Limited</div>
+                    <div class="comparison-cell our-product-column"><span class="checkmark">✓</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell"><strong>Personalized Design</strong></div>
+                    <div class="comparison-cell"><span class="crossmark">✗</span></div>
+                    <div class="comparison-cell our-product-column"><span class="checkmark">✓</span></div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-cell"><strong>Prevents RSI</strong></div>
+                    <div class="comparison-cell"><span class="crossmark">✗</span></div>
+                    <div class="comparison-cell our-product-column"><span class="checkmark">✓</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pricing" class="pricing">
+        <h2 class="section-title">Affordable Custom Gaming</h2>
+        <div class="price-card">
+            <h3>Complete Custom Controller Shell</h3>
+            <div class="price">$50</div>
+            <ul class="price-features">
+                <li>Hand molding session</li>
+                <li>Custom 3D-printed shells</li>
+                <li>Choice of materials (TPU/PETG)</li>
+                <li>Professional fitting & assembly</li>
+                <li>2-week turnaround</li>
+                <li>Lifetime support</li>
+            </ul>
+            <a href="#contact" class="cta-button">Book Your Session</a>
+        </div>
+        <p style="margin-top: 2rem; color: #666;">*Requires your own PS5 controller for conversion</p>
+    </div>
+
+    <div class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Do I need to bring my own controller?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you'll need to bring your own PS5 DualSense controller. We custom-mold shells to fit your hands and then install them on your controller, so you keep all the original functionality you're familiar with.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How long does the entire process take?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        The molding session takes about 15-20 minutes. After that, we'll need approximately two weeks to 3D print your custom shells and prepare your controller for pickup or shipping.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What's the difference between TPU and PETG materials?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        TPU is a flexible, rubber-like material that provides excellent grip and shock absorption - perfect if you prefer a softer, more cushioned feel. PETG is more rigid and durable, offering a solid, traditional controller feel while still being custom-fitted to your hands. Both materials are high-quality and long-lasting.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Will this work with all PS5 games?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! Since we're only replacing the outer shell of your existing PS5 controller, all the internal electronics, haptic feedback, adaptive triggers, and functionality remain exactly the same. It works perfectly with every PS5 game.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Can I get replacements if my controller shell gets damaged?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We keep your hand molds on file, so you can always order replacement shells if needed. We also offer a warranty on manufacturing defects and provide lifetime support for all our customers.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Do you ship, or is it pickup only?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        We offer both options! You can pick up your finished controller at any of our partner locations, or we can ship it to you anywhere in Canada. Shipping costs vary based on your location.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+
+
+    <div class="materials-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Material</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666;">
+                We offer two premium materials, each with unique benefits. Both are durable, high-quality, and custom-fitted to your hands.
+            </p>
+            
+            <div class="materials-grid">
+                
+                <div class="material-card">
+                    <div class="material-image">
+                        <img src="images/tpu.PNG" 
+                            alt="TPU shell sample/texture"
+                            style="width:75%; height:auto; border-radius:10px;">
+                    </div>
+                    <h3>TPU - Flexible & Grippy</h3>
+                    <p>Thermoplastic polyurethane provides a soft, rubber-like feel with excellent shock absorption and superior grip for intense gaming sessions.</p>
+                </div>
+
+                <div class="material-card">
+                    <div class="material-image">
+                        <img src="images/petg.PNG" 
+                            alt="PETG shell sample/texture"
+                            style="width:75%; height:auto; border-radius:10px;">
+                    </div>
+                    <h3>PETG - Firm & Durable</h3>
+                    <p>Strong and impact-resistant material, offering a solid structure while remaining slightly flexible. Ideal for everyday gaming use.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Gamers Are Saying</h2>
+            <div class="testimonials">
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/hs1.png" 
+                            alt="Alex T., Competitive Gamer" 
+                            style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"After 6 hours of Apex Legends, my hands used to be killing me. With CostumControls, I can play all day without any discomfort. The custom fit is a complete game-changer!"</p>
+                    <p class="testimonial-author">- Alex T., Competitive Gamer</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/hs2.png" 
+                            alt="Jessica M., Streamer" 
+                            style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I've tried every controller grip on the market, but nothing compares to having one made specifically for MY hands. My K/D ratio has honestly improved since switching."</p>
+                    <p class="testimonial-author">- Jessica M., Streamer</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/hs3.png" 
+                            alt="Marc L., Casual Gamer" 
+                            style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The process was super quick at Otakuthon, and the team really knew their stuff. Two weeks later, I can't imagine gaming without my custom grip. Worth every penny!"</p>
+                    <p class="testimonial-author">- Marc L., Casual Gamer</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="locations-section">
+        <div class="container">
+            <h2 class="section-title">Where to Find Us</h2>
+            
+           <div class="locations-content">
+                <div class="location-category">
+                    <h3 class="category-title">🏪 Partner Stores</h3>
+                    <div class="location-grid">
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/retromtl.png" 
+                                    alt="Retro MTL store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Retro MTL</h4>
+                            <p>4023 Rue Hochelaga<br>Montréal, QC H1W 1K4</p>
+                            <p class="location-specialty">Retro & modern gaming specialists</p>
+                        </div>
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/pro_retro.png" 
+                                    alt="Pro du Rétro store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Pro du Rétro</h4>
+                            <p>6245 Boulevard Métropolitain E<br>Saint-Léonard, QC H1P 1X7</p>
+                            <p class="location-specialty">Used & refurbished equipment</p>
+                        </div>
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/three.png" 
+                                    alt="Three Kings Loot Inc. store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Three Kings Loot Inc.</h4>
+                            <p>5175 C Sherbrooke St W<br>Montréal, QC H4A 1T5</p>
+                            <p class="location-specialty">Gaming hub & community events</p>
+                        </div>
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/respawn-replay.png" 
+                                    alt="Respawn & Replay store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Respawn & Replay</h4>
+                            <p>541 80e Avenue<br>Rivière-des-Prairies, QC H1A 2L7</p>
+                            <p class="location-specialty">New & used games</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+                <div class="location-category">
+                    <h3 class="category-title">📅 Upcoming Events</h3>
+                    <div class="events-list">
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/montral-comiccon.jpg" 
+                                    alt="Montréal Comiccon booth" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>Montréal Comiccon</h4>
+                                <span class="event-badge">July 2025</span>
+                            </div>
+                            <p class="event-location">📍 Palais des Congrès de Montréal</p>
+                            <p class="event-details">66,000+ attendees | Pop-culture & gaming</p>
+                            <p class="event-note">Visit our booth for live demonstrations and exclusive event pricing!</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/otakuthon.png" 
+                                    alt="Otakuthon booth" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>Otakuthon</h4>
+                                <span class="event-badge">August 2025</span>
+                            </div>
+                            <p class="event-location">📍 Palais des Congrès de Montréal</p>
+                            <p class="event-details">35,000+ attendees | Anime & gaming convention</p>
+                            <p class="event-note">Get molded on-site and take home your custom controller!</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/lan-ets.png" 
+                                    alt="LAN ETS event" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>LAN ETS</h4>
+                                <span class="event-badge">Throughout the year</span>
+                            </div>
+                            <p class="event-location">📍 Various venues, Montréal</p>
+                            <p class="event-details">2,000+ players | North America's largest east coast LAN</p>
+                            <p class="event-note">Perfect for serious gamers looking for competitive edge!</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/migs.jpg" 
+                                    alt="Montréal International Game Summit (MIGS)" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>Montréal International Game Summit (MIGS)</h4>
+                                <span class="event-badge">November 2025</span>
+                            </div>
+                            <p class="event-location">📍 Grand Quay du Port</p>
+                            <p class="event-details">Industry professionals & gaming enthusiasts</p>
+                            <p class="event-note">Network with industry leaders and try our latest designs!</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="contact-section">
+        <h2>Ready to Level Up Your Gaming Experience?</h2>
+        <div class="contact-info">
+            <p>📍 Find us at gaming events across Montréal</p>
+            <p>📧 <a href="mailto:info@costumcontrols.com">info@costumcontrols.com</a></p>
+            <p>📱 Follow us on social media for pop-up locations</p>
+        </div>
+        <a href="#home" class="cta-button">Book Your Session</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CostumControls. All rights reserved. | Handcrafted with ❤️ in Montréal</p>
+    </footer>
+</body>
+</html>
