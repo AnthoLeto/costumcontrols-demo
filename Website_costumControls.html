@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CostumControls - Custom Ergonomic Gaming Controllers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border: 2px dashed #ddd;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .problem-section {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+        }
+
+        .problem-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .problem-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .process {
+            background: white;
+        }
+
+        .process-visual {
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .process-image {
+            width: 100%;
+            /* Remove the fixed height */
+            background: white;
+            border-radius: 10px;
+            display: inline-block; /* shrink-wrap to image */
+            padding: 10px; /* optional, for some spacing around the image */
+            border: 2px dashed #ddd;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .materials {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+        }
+
+        .material-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .material-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .material-image {
+            width: 100%;
+            height: 250px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 2px dashed #ddd;
+        }
+
+        .material-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .testimonials-section {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            background: #ddd;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.75rem;
+            border: 3px solid #667eea;
+        }
+
+        .stars {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+            text-align: right;
+        }
+
+        .locations-section {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+        }
+
+        .locations-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .location-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .location-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .location-image {
+            width: 100%;
+            height: 180px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            border: 2px dashed #ddd;
+        }
+
+        .location-card h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-card p {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .location-specialty {
+            font-style: italic;
+            color: #764ba2;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            border: 2px dashed #ddd;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .event-header h4 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .event-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .event-location {
+            color: #555;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .event-details {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .event-note {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            color: #333;
+            font-style: italic;
+            margin-top: 1rem;
+            border-left: 3px solid #764ba2;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CostumControls</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#solution">Our Solution</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#locations">Find Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Game Longer. Play Better. Feel Comfortable.</h1>
+        <p>Custom ergonomic controller casings designed for YOUR hands</p>
+        <div class="hero-image-container">
+            <div class="hero-image">
+                <img src="images/controller.jpg" alt="Custom ergonomic controller" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+            </div>
+        </div>
+        <a href="#contact" class="cta-button">Get Your Custom Controller</a>
+    </section>
+
+    <div id="problem" class="problem-section">
+        <div class="problem-content">
+            <h2 class="section-title">The Problem with One-Size-Fits-All</h2>
+            <p>Standard gaming controllers are designed for the "average" hand, but gamers come in all shapes and sizes. This mismatch leads to:</p>
+            
+            <div class="features" style="margin-top: 2rem;">
+                <div class="feature-card">
+                    <div class="feature-icon">😓</div>
+                    <h3>Hand Discomfort</h3>
+                    <p>Sub-optimal hand posture causes strain during extended gaming sessions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚠️</div>
+                    <h3>Musculoskeletal Issues</h3>
+                    <p>Repetitive strain and poor ergonomics lead to long-term complaints</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📉</div>
+                    <h3>Reduced Performance</h3>
+                    <p>Excessive finger movements and awkward grip positions affect your game</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🕹️</div>
+                    <h3>Gaming Fatigue</h3>
+                    <p>Long sessions can cause hand and wrist fatigue without proper ergonomics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div id="solution" class="container">
+        <h2 class="section-title">Our Solution</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-image">
+                    <img src="images/custom.png" 
+                        alt="Before and after comparison of hand position with custom grip"
+                        style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                </div>
+                <div class="feature-icon">✋</div>
+                <h3>Personalized Fit</h3>
+                <p>Custom grip geometry molded to match your exact hand size and shape, reducing unnecessary movements and strain</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-image">
+                    <img src="images/both.jpg" 
+                        alt="Controller with snap-on casing for PS5 and Xbox"
+                        style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                </div>
+                <div class="feature-icon">🎮</div>
+                <h3>Universal Compatibility</h3>
+                <p>Snap-on casings for PS5 DualSense and Xbox controllers - keep your warranty intact!</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-image">
+                    <img src="images/texture.png" 
+                        alt="Various colored custom controller grips"
+                        style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                </div>
+                <div class="feature-icon">🎨</div>
+                <h3>Your Style</h3>
+                <p>Choose from multiple materials, textures, colors, and patterns to make it uniquely yours</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-image">
+                    <img src="images/gamer.png" 
+                        alt="Gamer using a custom ergonomic controller"
+                        style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                </div>
+                <div class="feature-icon">🏆</div>
+                <h3>Proven Benefits</h3>
+                <p>Ergonomic design reduces discomfort and improves both comfort and performance</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-image">
+                    <img src="images/material.png" 
+                        alt="Close-up of 3D printed material quality"
+                        style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                </div>
+                <div class="feature-icon">💪</div>
+                <h3>Durable Materials</h3>
+                <p>High-quality 3D printed materials built to withstand intense gaming sessions</p>
+            </div>
+
+            
+            <div class="feature-card">
+                <div class="feature-image">
+                    <img src="images/clock.png" 
+                        alt="Production timeline visualization"
+                        style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                </div>
+                <div class="feature-icon">⚡</div>
+                <h3>Quick Turnaround</h3>
+                <p>From molding to finished product in just a few days</p>
+            </div>
+
+    </div>
+
+    <div id="process" class="process">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="process-visual">
+                <div class="process-image">
+                    <img src="images/process.png" 
+                        alt="Step-by-step process diagram or infographic"
+                        style="width:100%; height:auto; border-radius:10px;">
+                </div>
+            </div>
+
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Visit Us</h3>
+                    <p>Come to one of our pop-up locations at gaming events or partner stores across Montréal</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Mold Your Grip</h3>
+                    <p>Spend 5 minutes shaping modeling clay to your perfect grip using our custom panels</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>We Scan & Print</h3>
+                    <p>Our technicians 3D scan your custom shape and produce your personalized casing</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Unbox Your Costumized Frame</h3>
+                    <p>Open your package and see your custom controller ready to play</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Game in Comfort</h3>
+                    <p>Receive your custom controller casing and experience ergonomic gaming</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3>Share Your Experience</h3>
+                    <p>Show off your custom controller online and join our gaming community</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="materials">
+        <div class="container">
+            <h2 class="section-title">Material Options</h2>
+            <div class="material-options">
+                <div class="material-card">
+                    <div class="material-image">
+                        <img src="images/tpu.jpg" 
+                            alt="TPU grip sample/texture"
+                            style="width:100%; height:auto; border-radius:10px;">
+                    </div>
+                    <h3>TPU - Soft Grip</h3>
+                    <p>Flexible, cushioned feel with excellent shock absorption. Perfect for gamers who prefer a softer, more forgiving grip.</p>
+                </div>
+                <div class="material-card">
+                    <div class="material-image">
+                        <img src="images/petg.PNG" 
+                            alt="PETG shell sample/texture"
+                            style="width:75%; height:auto; border-radius:10px;">
+                    </div>
+                    <h3>PETG - Firm & Durable</h3>
+                    <p>Strong and impact-resistant material, offering a solid structure while remaining slightly flexible. Ideal for everyday gaming use.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Gamers Are Saying</h2>
+            <div class="testimonials">
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/hs1.png" 
+                            alt="Alex T., Competitive Gamer" 
+                            style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"After 6 hours of Apex Legends, my hands used to be killing me. With CostumControls, I can play all day without any discomfort. The custom fit is a complete game-changer!"</p>
+                    <p class="testimonial-author">- Alex T., Competitive Gamer</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/hs2.png" 
+                            alt="Jessica M., Streamer" 
+                            style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I've tried every controller grip on the market, but nothing compares to having one made specifically for MY hands. My K/D ratio has honestly improved since switching."</p>
+                    <p class="testimonial-author">- Jessica M., Streamer</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="images/hs3.png" 
+                            alt="Marc L., Casual Gamer" 
+                            style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The process was super quick at Otakuthon, and the team really knew their stuff. Two weeks later, I can't imagine gaming without my custom grip. Worth every penny!"</p>
+                    <p class="testimonial-author">- Marc L., Casual Gamer</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="locations-section">
+        <div class="container">
+            <h2 class="section-title">Where to Find Us</h2>
+            
+           <div class="locations-content">
+                <div class="location-category">
+                    <h3 class="category-title">🏪 Partner Stores</h3>
+                    <div class="location-grid">
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/retromtl.png" 
+                                    alt="Retro MTL store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Retro MTL</h4>
+                            <p>4023 Rue Hochelaga<br>Montréal, QC H1W 1K4</p>
+                            <p class="location-specialty">Retro & modern gaming specialists</p>
+                        </div>
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/pro_retro.png" 
+                                    alt="Pro du Rétro store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Pro du Rétro</h4>
+                            <p>6245 Boulevard Métropolitain E<br>Saint-Léonard, QC H1P 1X7</p>
+                            <p class="location-specialty">Used & refurbished equipment</p>
+                        </div>
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/three.png" 
+                                    alt="Three Kings Loot Inc. store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Three Kings Loot Inc.</h4>
+                            <p>5175 C Sherbrooke St W<br>Montréal, QC H4A 1T5</p>
+                            <p class="location-specialty">Gaming hub & community events</p>
+                        </div>
+
+                        <div class="location-card">
+                            <div class="location-image">
+                                <img src="images/respawn-replay.png" 
+                                    alt="Respawn & Replay store front" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <h4>Respawn & Replay</h4>
+                            <p>541 80e Avenue<br>Rivière-des-Prairies, QC H1A 2L7</p>
+                            <p class="location-specialty">New & used games</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+                <div class="location-category">
+                    <h3 class="category-title">📅 Upcoming Events</h3>
+                    <div class="events-list">
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/montral-comiccon.jpg" 
+                                    alt="Montréal Comiccon booth" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>Montréal Comiccon</h4>
+                                <span class="event-badge">July 2025</span>
+                            </div>
+                            <p class="event-location">📍 Palais des Congrès de Montréal</p>
+                            <p class="event-details">66,000+ attendees | Pop-culture & gaming</p>
+                            <p class="event-note">Visit our booth for live demonstrations and exclusive event pricing!</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/otakuthon.png" 
+                                    alt="Otakuthon booth" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>Otakuthon</h4>
+                                <span class="event-badge">August 2025</span>
+                            </div>
+                            <p class="event-location">📍 Palais des Congrès de Montréal</p>
+                            <p class="event-details">35,000+ attendees | Anime & gaming convention</p>
+                            <p class="event-note">Get molded on-site and take home your custom controller!</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/lan-ets.png" 
+                                    alt="LAN ETS event" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>LAN ETS</h4>
+                                <span class="event-badge">Throughout the year</span>
+                            </div>
+                            <p class="event-location">📍 Various venues, Montréal</p>
+                            <p class="event-details">2,000+ players | North America's largest east coast LAN</p>
+                            <p class="event-note">Perfect for serious gamers looking for competitive edge!</p>
+                        </div>
+
+                        <div class="event-card">
+                            <div class="event-image">
+                                <img src="images/migs.jpg" 
+                                    alt="Montréal International Game Summit (MIGS)" 
+                                    style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                            </div>
+                            <div class="event-header">
+                                <h4>Montréal International Game Summit (MIGS)</h4>
+                                <span class="event-badge">November 2025</span>
+                            </div>
+                            <p class="event-location">📍 Grand Quay du Port</p>
+                            <p class="event-details">Industry professionals & gaming enthusiasts</p>
+                            <p class="event-note">Network with industry leaders and try our latest designs!</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="contact-section">
+        <h2>Ready to Level Up Your Gaming Experience?</h2>
+        <div class="contact-info">
+            <p>📍 Find us at gaming events across Montréal</p>
+            <p>📧 info@CostumControls.com</p>
+            <p>📱 Follow us on social media for pop-up locations</p>
+        </div>
+        <a href="#home" class="cta-button">Book Your Session</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 CostumControls. Designed for gamers, by gamers.</p>
+        <p>Montréal, Quebec</p>
+    </footer>
+</body>
+</html>
