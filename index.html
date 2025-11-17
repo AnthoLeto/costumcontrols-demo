@@ -655,7 +655,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">CostumControls</div>
+            <div class="logo">CustumControls</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
@@ -669,16 +669,30 @@
     <section id="home" class="hero">
         <h1>Your Hands. Your Controller.</h1>
         <p>Custom-molded ergonomic gaming controllers designed specifically for YOU</p>
-        
-        <div class="hero-image-container">
-            <div class="hero-image">
-                <img src="images/hero.png" 
-                     alt="Custom Gaming Controller" 
-                     style="max-width:100%; max-height:100%; object-fit:contain; border-radius:10px;">
-            </div>
+
+        <div class="hero-image-container" 
+            style="display: inline-block; 
+                    border: 3px solid #ffffff23; 
+                    border-radius: 10px; 
+                    overflow: hidden; 
+                    width: fit-content; 
+                    margin-bottom: 20px; 
+                    background-color: rgba(255, 255, 255, 0.247);">
+            <img src="images/controller.jpg" 
+                alt="Custom Gaming Controller" 
+                style="display: block; 
+                        width: auto; 
+                        height: auto; 
+                        max-width: 100%; 
+                        max-height: 100%;
+                        border-radius: 10px;">
         </div>
-        
-        <a href="#contact" class="cta-button">Get Started</a>
+
+
+
+        <br> <!-- optional, ensures spacing -->
+
+        <a href="#contact" class="cta-button" style="display: inline-block; margin-top: 10px;">Get Started</a>
     </section>
 
     <div class="container">
@@ -686,37 +700,23 @@
             <h2 class="section-title">Why Choose CostumControls?</h2>
             <div class="features">
                 <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="images/perfect_fit.png" 
-                            alt="Perfect Fit for Your Hands" 
-                            style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
-                    </div>
-                    <div class="feature-icon">✋</div>
-                    <h3>Perfect Fit</h3>
-                    <p>Each controller is molded to match the exact contours of your hands, providing unprecedented comfort during marathon gaming sessions.</p>
-                </div>
+                <div class="feature-icon" style="font-size: 50px; text-align: center; margin-bottom: 15px;">✋</div>
+                <h3 style="text-align: center;">Perfect Fit</h3>
+                <p style="text-align: center;">Each controller is molded to match the exact contours of your hands, providing unprecedented comfort during marathon gaming sessions.</p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="images/competitive_edge.png" 
-                            alt="Enhanced Performance" 
-                            style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
-                    </div>
-                    <div class="feature-icon">🎮</div>
-                    <h3>Enhanced Performance</h3>
-                    <p>Better ergonomics mean less fatigue and more precise control, giving you the competitive edge you need to dominate.</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="font-size: 50px; text-align: center; margin-bottom: 15px;">🎮</div>
+                <h3 style="text-align: center;">Enhanced Performance</h3>
+                <p style="text-align: center;">Better ergonomics mean less fatigue and more precise control, giving you the competitive edge you need to dominate.</p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="images/reduced_strain.png" 
-                            alt="Reduced Strain" 
-                            style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
-                    </div>
-                    <div class="feature-icon">💪</div>
-                    <h3>Reduced Strain</h3>
-                    <p>Custom ergonomics help prevent hand fatigue, wrist strain, and repetitive stress injuries associated with prolonged gaming.</p>
-                </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="font-size: 50px; text-align: center; margin-bottom: 15px;">💪</div>
+                <h3 style="text-align: center;">Reduced Strain</h3>
+                <p style="text-align: center;">Custom ergonomics help prevent hand fatigue, wrist strain, and repetitive stress injuries associated with prolonged gaming.</p>
+            </div>
+
             </div>
         </section>
     </div>
@@ -822,7 +822,7 @@
                         <span class="faq-toggle">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Yes, you'll need to bring your own PS5 DualSense controller. We custom-mold shells to fit your hands and then install them on your controller, so you keep all the original functionality you're familiar with.
+                       Yes, but you do not need to bring one for the molding. We have some!
                     </div>
                 </div>
 
@@ -832,7 +832,7 @@
                         <span class="faq-toggle">▼</span>
                     </div>
                     <div class="faq-answer">
-                        The molding session takes about 15-20 minutes. After that, we'll need approximately two weeks to 3D print your custom shells and prepare your controller for pickup or shipping.
+                        The molding session takes about 5 minutes. After that, we'll need approximately 2 days to 3D print your custom shells and prepare your controller for pickup or shipping.
                     </div>
                 </div>
 
@@ -848,11 +848,11 @@
 
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFAQ(this)">
-                        Will this work with all PS5 games?
+                        Will this work with my current PS5 or Xbox controller?
                         <span class="faq-toggle">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Absolutely! Since we're only replacing the outer shell of your existing PS5 controller, all the internal electronics, haptic feedback, adaptive triggers, and functionality remain exactly the same. It works perfectly with every PS5 game.
+                        Absolutely! Since we're only replacing the outer shell of your existing controller, all the internal electronics, haptic feedback, adaptive triggers, and functionality remain exactly the same. It works perfectly with every PS5 game.
                     </div>
                 </div>
 
@@ -899,9 +899,9 @@
                 
                 <div class="material-card">
                     <div class="material-image">
-                        <img src="images/tpu.PNG" 
+                        <img src="images/TPU.jpg" 
                             alt="TPU shell sample/texture"
-                            style="width:75%; height:auto; border-radius:10px;">
+                            style="width:50%; height:auto; border-radius:10px;">
                     </div>
                     <h3>TPU - Flexible & Grippy</h3>
                     <p>Thermoplastic polyurethane provides a soft, rubber-like feel with excellent shock absorption and superior grip for intense gaming sessions.</p>
@@ -911,7 +911,7 @@
                     <div class="material-image">
                         <img src="images/petg.PNG" 
                             alt="PETG shell sample/texture"
-                            style="width:75%; height:auto; border-radius:10px;">
+                            style="width:50%; height:auto; border-radius:10px;">
                     </div>
                     <h3>PETG - Firm & Durable</h3>
                     <p>Strong and impact-resistant material, offering a solid structure while remaining slightly flexible. Ideal for everyday gaming use.</p>
